@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/WSLog'
+  s.homepage         = 'https://github.com/wws19125/WSLog'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '王的世界' => 'wws19125@126.com' }

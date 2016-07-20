@@ -37,7 +37,7 @@
 /// @params err NSError *
 #define WSLogError(err){\
     WSLogManager *m = [WSLogManager manager];\
-    [m error:err function:__FUNCTION__ file:__FILE__ linum:__LINE__];\
+    [m error:err function:(char *)__FUNCTION__ file:(char *)__FILE__ linum:__LINE__];\
 }
 
 #define WSLogReadAll(msg) { \

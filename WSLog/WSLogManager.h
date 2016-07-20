@@ -19,6 +19,6 @@ typedef NS_ENUM(NSInteger,WSLogType)
 
 + (instancetype)manager;
 - (void)error:(id)err function:(char*)function file:(char*)file linum:(int)linum;
-- (BOOL)readAllLog:(NSString **)outLogs;
+- (void)readAllLog:(NSString **)outLogs;
 - (void)clearLog;
 @end

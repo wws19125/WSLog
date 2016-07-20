@@ -20,6 +20,9 @@
 {
     NSString *path = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"/logs"];
     self.logPath = [path stringByAppendingPathComponent:@"error.log"];
+#ifdef DEBUG
+    NSLog(@"logfile path => %@",self.logPath);
+#endif
     NSFileManager *fs = [NSFileManager defaultManager];
     if(![fs fileExistsAtPath:path])
     {
@@ -33,7 +36,6 @@
 
 - (BOOL)writeMessage:(NSString *)msg
 {
-    NSLog(@"%@",self.logPath);
     FILE *pf = NULL;
     NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
     pf = fopen([self.logPath UTF8String], "ab+");
@@ -43,10 +45,11 @@
         return NO;
     }
     //fseek(pf, -1L, SEEK_END);
-    NSInteger len = fwrite(data.bytes, data.length, 1, pf);
+    fwrite(data.bytes, data.length, 1, pf);
     char buf[1] = {'\n'};
     fwrite(buf, 1, 1, pf);
     fclose(pf);
+    return YES;
 }
 - (BOOL)clearMessage
 {
@@ -58,6 +61,7 @@
         return NO;
     }
     fclose(pf);
+    return YES;
 }
 - (BOOL)readAllMessage:(NSString **)outMsg
 {

@@ -37,7 +37,7 @@
         }
         else
             _logInstance = [WSFileLog new];
-        [_logInstance setUp];
+        self.isReady = [_logInstance setUp];
     }
     return _logInstance;
 }
@@ -110,7 +110,8 @@
                 message = err;
         if(message)
         {
-            [self.logInstance writeMessage:[NSString stringWithFormat:@"%@ %@ %@ => %d ## %@",dtStr,[arr lastObject],fn,linum,message]];
+            if(self.isReady)
+                [self.logInstance writeMessage:[NSString stringWithFormat:@"%@ %@ %@ => %d ## %@",dtStr,[arr lastObject],fn,linum,message]];
 #ifdef DEBUG
             NSLog(@"%@",[NSString stringWithFormat:@"%@ %@ %@ => %d ## %@",dtStr,[arr lastObject],fn,linum,message]);
 #endif
@@ -121,8 +122,9 @@
     });
 }
 
-- (BOOL)readAllLog:(NSString **)outLogs
+- (void)readAllLog:(NSString **)outLogs
 {
+    if(!self.isReady)return;
     dispatch_sync(self.queue, ^{
         [self.lock lock];
         [self.logInstance readAllMessage:outLogs];
@@ -131,6 +133,7 @@
 }
 - (void)clearLog
 {
+    if(!self.isReady)return;
     dispatch_sync(self.queue, ^{
         [self.lock lock];
         [self.logInstance clearMessage];
