@@ -36,6 +36,7 @@ printf( "\n[%s] "format" File:%s, Line:%d\n", moduleName, ##__VA_ARGS__, __FILE_
     WSLogError(ex);
     //WSLogError(e);
     WSLogDebug("abc");
+    WSLogDebug("%@",@"123");
     WSLogTrace();
     NSString *strb;
     WSLogReadAll(strb);
@@ -44,6 +45,7 @@ printf( "\n[%s] "format" File:%s, Line:%d\n", moduleName, ##__VA_ARGS__, __FILE_
     [btn setBackgroundColor:[UIColor redColor]];
     [btn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    NSLog(@"%s","99999999999999999aaa");
     //WSLogClear()
     
     
@@ -56,15 +58,15 @@ printf( "\n[%s] "format" File:%s, Line:%d\n", moduleName, ##__VA_ARGS__, __FILE_
 {
     NSLog(@"================");
     //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100), dispatch_get_main_queue(), ^{
-    NSArray *ar = @[@"!",@"f"];
-    [ar objectAtIndex:100];
+    //NSArray *ar = @[@"!",@"f"];
+    //[ar objectAtIndex:100];
     //});
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSArray *ar = @[@"!",@"f"];
-    [ar objectAtIndex:100];
+    //NSArray *ar = @[@"!",@"f"];
+    //[ar objectAtIndex:100];
 }
 - (void)didReceiveMemoryWarning
 {

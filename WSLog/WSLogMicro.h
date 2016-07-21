@@ -17,14 +17,14 @@
 #define WSLogTrace(...){\
     NSString *str = [[NSString alloc] initWithUTF8String:__FILE__];\
     NSArray<NSString *> *arr = [str componentsSeparatedByString:@"/"];\
-    printf("\nTrace:\t%s  %s => %d: " __VA_ARGS__,[[arr lastObject] UTF8String], __FUNCTION__, __LINE__);\
+    NSLog(@"Trace:\t%s  %s => %d: " __VA_ARGS__,[[arr lastObject] UTF8String], __FUNCTION__, __LINE__);\
 }
 /// print debug
 /// format: Trace:  fileName-functionName-lineNumber-customInfo
 #define WSLogDebug(format,...){\
     NSString *str = [[NSString alloc] initWithUTF8String:__FILE__];\
     NSArray<NSString *> *arr = [str componentsSeparatedByString:@"/"];\
-    printf("\nDebug:\t%s  %s => %d: "format"", [[arr lastObject] UTF8String], __FUNCTION__, __LINE__,##__VA_ARGS__);\
+    NSLog(@"Debug:\t%s  %s => %d: "format"", [[arr lastObject] UTF8String], __FUNCTION__, __LINE__,##__VA_ARGS__);\
 }
 #else
 
