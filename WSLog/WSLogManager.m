@@ -95,7 +95,7 @@
         NSString *message;
         NSString *fn = [NSString stringWithUTF8String:function];
         NSString *fe = [NSString stringWithUTF8String:file];
-        NSArray<NSString *> *arr = [fe componentsSeparatedByString:@"/"];\
+        NSArray *arr = [fe componentsSeparatedByString:@"/"];
         if([err isKindOfClass:[NSError class]])
         {
             NSError *e = (NSError *)err;
